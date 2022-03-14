@@ -38,6 +38,7 @@ public class Occupancy extends Thread{
 					 "https://sky-us2.clock-software.com/77801/12512/occupancy_incomes_report",
 					 "https://sky-us2.clock-software.com/77801/12509/occupancy_incomes_report",
 					 "https://sky-us2.clock-software.com/77801/12513/occupancy_incomes_report"};
+	                
 	public void textAppend(String stringIn) {
    	 area.append(stringIn);
     }	
