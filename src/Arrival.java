@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
@@ -70,7 +71,7 @@ public class Arrival extends Thread{
        }	
     public void Login(String serial,String user,String pass) {
 
-		textAppend("Clock Occupancy report starting - "+dtf.format(localTime)+"\n");
+		textAppend("Clock Arrival report starting - "+dtf.format(localTime)+"\n");
 		setBrowser();
 		driver.get("https://sky-us2.clock-software.com/");
 		driver.switchTo().defaultContent();
@@ -90,7 +91,7 @@ public class Arrival extends Thread{
 		}catch(Exception ee) {ee.printStackTrace();}
 		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
 		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]/span[2]/span")).click();
-		textAppend("Clock Occupancy done login\n");
+		textAppend("Clock Arrival report done login\n");
 		try {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}		
@@ -98,6 +99,41 @@ public class Arrival extends Thread{
 	}
     public void run() {
     	Login("7780186186722297726985559","reports","NBVreports2020!");
+    	textAppend("Clock Arrival getting data\n");
+		for(int i=0;i<hotel.length;i++) {
+		
+						driver.get(links[i]);						
+						try {
+							Thread.sleep(1000);
+						}catch(Exception ee) {ee.printStackTrace();}
+													
+						System.out.println("waiting!");		
+						if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div/div[2]/div/div[2]/div/table")).size() != 0) {
+							System.out.println("waiting2!"+hotel[i]);
+							try {
+							WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div/div[2]/div/div[2]/div/table"));
+						    List<WebElement> folio_no = table.findElements(By.xpath(".//tr/td[2]"));
+						    List<WebElement> stay_date = table.findElements(By.xpath(".//tr/td[10]"));
+						    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[12]"));
+						    
+						    
+						    	int index=0;
+						    	st.execute("DELETE FROM `arrival` WHERE hotel = '"+hotel[i]+"'");
+							    for(int ii=0;ii<folio_no.size();ii++) {
+							    	
+							    	if(folio_no.get(ii).getText().contains("#")) {
+							    	System.out.println(folio_no.get(ii).getText()+"--"+stay_date.get(index).getText()+""+balance.get(index).getText());	    			
+							    	st.execute("INSERT INTO arrival (folio_number,stay_date,balance, Hotel)\r\n"
+							    			+ "VALUES ('"+folio_no.get(ii).getText()+"','"+stay_date.get(index).getText()+"','"+balance.get(index).getText()+"','"+hotel[i]+"');");
+							    	index++;
+							    	}
+							    }							   
+						    }catch(Exception ee) {ee.printStackTrace();}
+																			
+						}else {System.out.println("refresh");driver.navigate().refresh();}
+					
+		}
+		textAppend("Clock Arrival getting data done\n");
     }
     
     public void setDataBaseConnection() {

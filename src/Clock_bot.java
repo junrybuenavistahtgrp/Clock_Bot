@@ -35,14 +35,15 @@ public class Clock_bot extends Thread{
 	
 	public void run() {
 		
-		new Occupancy(area).start();
+		//new Occupancy(area).start();
+		new Arrival(area).run();
 		while(true) {
 			
 			try {
 				Thread.sleep(1800000);
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			new Occupancy(area).start();
+			//new Occupancy(area).start();
 		}
 		
 	}
