@@ -134,6 +134,10 @@ public class Arrival extends Thread{
 					
 		}
 		textAppend("Clock Arrival getting data done\n");
+		driver.get("http://localhost/googleapi/clock-arrival.php");
+		textAppend("Clock Arrival google sheet updated"+dtf.format(localTime)+"\n\n");
+		driver.quit();
+		
     }
     
     public void setDataBaseConnection() {

@@ -1,3 +1,4 @@
+import java.awt.GridLayout;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.io.File;
@@ -29,21 +30,23 @@ import org.openqa.selenium.interactions.Actions;
 public class Clock_bot extends Thread{
 	WebDriver driver;
 	JTextArea area;
+	JTextArea area2;
 	public Clock_bot() {
 		GUI gui = new GUI();
 	}
 	
 	public void run() {
 		
-		//new Occupancy(area).start();
-		new Arrival(area).run();
+		new Occupancy(area).start();
+		new Arrival(area2).start();
 		while(true) {
 			
 			try {
 				Thread.sleep(1800000);
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			//new Occupancy(area).start();
+			new Occupancy(area).start();
+			new Arrival(area2).start();
 		}
 		
 	}
@@ -53,6 +56,8 @@ public class Clock_bot extends Thread{
 	     GUI(){  
 		    	 area=new JTextArea();
 		    	 area.setEditable(false);
+		    	 area2=new JTextArea();
+		    	 area2.setEditable(false);
 		    	
 		    	 
 		    	 JScrollPane scrollableTextArea = new JScrollPane(area);
@@ -61,10 +66,19 @@ public class Clock_bot extends Thread{
 				            e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
 				        }
 				    });
+				   JScrollPane scrollableTextArea2 = new JScrollPane(area2);
+				   scrollableTextArea.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+				        public void adjustmentValueChanged(AdjustmentEvent e) {  
+				            e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
+				        }
+				    }); 
+				   
 		    	 JFrame frame=new JFrame("Clock Bot is Running");
 		    	 frame.add(scrollableTextArea);
+		    	 frame.add(scrollableTextArea2);
+		    	 frame.setLayout(new GridLayout()); 
 		    	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    	 frame.setSize(400,750);
+		    	 frame.setSize(700,750);
 		    	 frame.setLocationRelativeTo(null);
 		    	 frame.setVisible(true);
 	     }
