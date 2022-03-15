@@ -105,7 +105,7 @@ public class Occupancy extends Thread{
 				try {
 					Thread.sleep(1000);
 				}catch(Exception ee) {ee.printStackTrace();}
-											
+				textAppend("Clock Occupancy getting data\n");							
 				System.out.println("waiting!");		
 				if(driver.findElements(By.xpath("/html/body/span[2]/div/table")).size() != 0) {
 					

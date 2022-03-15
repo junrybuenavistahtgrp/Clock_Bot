@@ -64,7 +64,7 @@ public class Arrival extends Thread{
 		
 		
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);	
 	}
     public void textAppend(String stringIn) {
       	 area.append(stringIn);
