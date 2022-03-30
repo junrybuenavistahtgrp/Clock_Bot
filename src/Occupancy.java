@@ -73,18 +73,20 @@ public class Occupancy extends Thread{
 			Thread.sleep(2000);			
 		}catch(Exception ee) {ee.printStackTrace();}
 		
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button/span[2]/span")).click();
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
+		                             
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button")).click();	                       
+		                               
 		try {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div/label/div/div[1]/div/input")).sendKeys(user);
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]/span[2]/span")).click();
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div/label/div/div[1]/div/input")).sendKeys(user);
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]")).click();
 		try {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]/span[2]/span")).click();
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]")).click();
 		textAppend("Clock Occupancy done login\n");
 		try {
 			Thread.sleep(5000);			
@@ -95,7 +97,7 @@ public class Occupancy extends Thread{
 	public void run() {
 		
 		Login("7780186186722297726985559","reports","NBVreports2020!");
-		
+		textAppend("Clock Occupancy getting data\n");
 		for(int i=0;i<hotel.length;i++) {
 			
 			driver.get(links[i]);
@@ -105,7 +107,7 @@ public class Occupancy extends Thread{
 				try {
 					Thread.sleep(1000);
 				}catch(Exception ee) {ee.printStackTrace();}
-				textAppend("Clock Occupancy getting data\n");							
+											
 				System.out.println("waiting!");		
 				if(driver.findElements(By.xpath("/html/body/span[2]/div/table")).size() != 0) {
 					

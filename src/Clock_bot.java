@@ -74,8 +74,8 @@ public class Clock_bot extends Thread{
 				    }); 
 				   
 		    	 JFrame frame=new JFrame("Clock Bot is Running");
-		    	 frame.add(scrollableTextArea);
 		    	 frame.add(scrollableTextArea2);
+		    	 frame.add(scrollableTextArea);
 		    	 frame.setLayout(new GridLayout()); 
 		    	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    	 frame.setSize(700,750);
