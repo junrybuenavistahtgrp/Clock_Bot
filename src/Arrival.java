@@ -70,9 +70,10 @@ public class Arrival extends Thread{
       	 area.append(stringIn);
        }	
     public void Login(String serial,String user,String pass) {
-
+    	
 		textAppend("Clock Arrival report starting - "+dtf.format(localTime)+"\n");
 		setBrowser();
+		driver.manage().window().maximize();
 		driver.get("https://sky-us2.clock-software.com/");
 		driver.switchTo().defaultContent();
 		try {
