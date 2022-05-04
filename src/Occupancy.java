@@ -251,7 +251,7 @@ public class Occupancy extends Thread{
 		}
 		
 		textAppend("Clock Occupancy done getting data\n");
-		//driver.get("http://localhost/googleapi/clock-occupancy.php");
+		driver.get("http://localhost/googleapi/clock-occupancy.php");
 		
 		textAppend("Clock Occupancy done updating google sheet - "+dtf.format(localTime)+"\n\n");
 		

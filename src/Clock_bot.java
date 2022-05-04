@@ -38,7 +38,7 @@ public class Clock_bot extends Thread{
 	public void run() {
 		
 		new Occupancy(area).start();
-		//new Arrival(area2).start();
+		new Arrival(area2).start();
 		while(true) {
 			
 			try {
