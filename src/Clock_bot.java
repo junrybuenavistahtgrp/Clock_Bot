@@ -37,6 +37,8 @@ public class Clock_bot extends Thread{
 	
 	public void run() {
 		
+		new AdvanceSearch(area).start();	
+	/*	
 		new Occupancy(area).start();
 		new Arrival(area2).start();
 		while(true) {
@@ -47,7 +49,7 @@ public class Clock_bot extends Thread{
 			
 			new Occupancy(area).start();
 			new Arrival(area2).start();
-		}
+		} */
 		
 	}
 	class GUI  

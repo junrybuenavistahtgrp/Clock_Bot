@@ -34,30 +34,57 @@ public class test {
 		dateformat = new SimpleDateFormat("MM/1/yyyy");
 		
 	
-		driver.get("file:///C:/xampp/htdocs/testweb/Aqua%20Hotel%20_%20Booking%20searches%20_%20Arrivals.html");
+		driver.get("file:///C:/xampp/htdocs/Test/test2/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
 		
-		if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div/div[2]/div/div[2]/div/table")).size() == 0) {		                           
+		if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {		                           
 			System.out.println("Not Found");			
 		}else {
 			System.out.println("Found");
-			WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div/div[2]/div/div[2]/div/table"));
-		    List<WebElement> folio_no = table.findElements(By.xpath(".//tr/td[2]"));
-		    List<WebElement> stay_date = table.findElements(By.xpath(".//tr/td[10]"));
-		    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[12]"));
+			WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div[4]/table"));
+		    List<WebElement> num = table.findElements(By.xpath(".//tr/td[1]"));
+		    List<WebElement> ref_num = table.findElements(By.xpath(".//tr/td[3]"));
+		    List<WebElement> arr = table.findElements(By.xpath(".//tr/td[4]"));
+		    List<WebElement> def = table.findElements(By.xpath(".//tr/td[5]"));
+		    List<WebElement> stay = table.findElements(By.xpath(".//tr/td[6]"));
+		    List<WebElement> guest = table.findElements(By.xpath(".//tr/td[7]"));
+		    List<WebElement> room_char = table.findElements(By.xpath(".//tr/td[22]"));
+		    List<WebElement> other_char = table.findElements(By.xpath(".//tr/td[25]"));
+		    List<WebElement> total_char = table.findElements(By.xpath(".//tr/td[26]"));
+		    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[27]"));
+		    List<WebElement> marketing = table.findElements(By.xpath(".//tr/td[29]"));
+		    
 		
+		    System.out.println(num.get(0).getText());
+		    System.out.println("ffffff");
 		    try {
-		    	int index=0;
-			    for(int i=0;i<folio_no.size();i++) {
+				Thread.sleep(2000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+		    try {
+		    	
+		    	st.execute("DELETE FROM `advance_search`");
+			    for(int i=0;i<num.size();i++) {
 			    	
-			    	if(folio_no.get(i).getText().contains("#")) {
-			    	System.out.println(folio_no.get(i).getText()+"--"+stay_date.get(index).getText()+""+balance.get(index).getText());	    	
-			    	st.execute("INSERT INTO arrival (folio_number,stay_date,balance, Hotel)\r\n"
-			    			+ "VALUES ('"+folio_no.get(i).getText()+"','"+stay_date.get(index).getText()+"','"+balance.get(index).getText()+"','Tropirock');");
-			    	index++;
+			    	System.out.println(num.get(i).getText());
+			    	if(i<(num.size()-1)) {
+			    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing) VALUES ("
+			    			+ "'"+num.get(i).getText()+"',"
+			    			+ "'"+ref_num.get(i).getText()+"',"
+			    			+ "'"+arr.get(i).getText()+"',"
+			    			+ "'"+def.get(i).getText()+"',"
+			    			+ "'"+stay.get(i).getText()+"',"
+			    			+ "'"+guest.get(i).getText()+"',"
+			    			+ "'"+room_char.get(i).getText()+"',"
+			    			+ "'"+other_char.get(i).getText()+"',"
+			    			+ "'"+total_char.get(i).getText()+"',"
+			    			+ "'"+balance.get(i).getText()+"',"
+			    			+ "'"+marketing.get(i).getText()+"')");}
+			    	else {
+			    		st.execute("INSERT INTO advance_search (num) VALUES ("
+				    			+ "'"+num.get(i).getText()+"')");}
 			    	}
-			    }
-			   
-		    }catch(Exception ee) {ee.printStackTrace();}
+			    		
+					    	
+			    }catch(Exception ee) {ee.printStackTrace();}
 		}
 	    
 	   
