@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class test {
 	Statement st;
 	ResultSet rs;
 	WebDriver driver;
+	JavascriptExecutor Jscript;
 	SimpleDateFormat dateformat;
 	public test() {
 		setBrowser();
@@ -34,11 +36,13 @@ public class test {
 		dateformat = new SimpleDateFormat("MM/1/yyyy");
 		
 	
-		driver.get("file:///C:/xampp/htdocs/Test/test4/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
+		driver.get("file:///C:/xampp/htdocs/Test/test2/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
 		
+		try {
+			Thread.sleep(5000);			
+		}catch(Exception ee) {ee.printStackTrace();}
 		
-		
-		//driver.findElement(By.xpath("/html/body/span[1]/nav/div/div/div[2]/div/a[1]")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[2]/input")).click();	
 	
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
@@ -50,11 +54,12 @@ public class test {
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
 		
-		try {
-			Thread.sleep(2000);			
-		}catch(Exception ee) {ee.printStackTrace();}
-		
-		driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+		Jscript = (JavascriptExecutor) driver;
+	
+				try {
+					Thread.sleep(2000);			
+				}catch(Exception ee) {ee.printStackTrace();}
+			
 		
 		
 		
