@@ -100,7 +100,6 @@ public class AdvanceSearch extends Thread{
 		try {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}		
-		driver.get("https://sky-us2.clock-software.com/77801/12036/reports");
 	}	
 	
 	public void run() {
@@ -108,10 +107,116 @@ public class AdvanceSearch extends Thread{
 		Login("7780186186722297726985559","reports","NBVreports2020!");
 		textAppend("Clock Occupancy getting data\n");
 		
+		 
+		for(int i=0;i<hotel.length;i++) {
+			driver.get(links[i]);		
+			
+			queryMonth();
+			
+			if(i==0) {
+				
+				driver.findElement(By.xpath("/html/body/span[1]/nav/div/div/div[2]/div/a[1]")).click();
+				try {
+					Thread.sleep(2000);			
+				}catch(Exception ee) {ee.printStackTrace();}
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
+				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
+				
+				driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+				try {
+					Thread.sleep(4000);			
+				}catch(Exception ee) {ee.printStackTrace();}
+				
+			}
+			
+			try {
+				Thread.sleep(2000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+			
+			if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {		                           
+				System.out.println("Not Found");			
+			}else {
+				System.out.println("Found");
+				
+				WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div[4]/table"));
+			    List<WebElement> num = table.findElements(By.xpath(".//tr/td[1]"));
+			    List<WebElement> ref_num = table.findElements(By.xpath(".//tr/td[3]"));
+			    List<WebElement> arr = table.findElements(By.xpath(".//tr/td[4]"));
+			    List<WebElement> def = table.findElements(By.xpath(".//tr/td[5]"));
+			    List<WebElement> stay = table.findElements(By.xpath(".//tr/td[6]"));
+			    List<WebElement> guest = table.findElements(By.xpath(".//tr/td[7]"));
+			    List<WebElement> room_char = table.findElements(By.xpath(".//tr/td[22]"));
+			    List<WebElement> other_char = table.findElements(By.xpath(".//tr/td[25]"));
+			    List<WebElement> total_char = table.findElements(By.xpath(".//tr/td[26]"));
+			    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[27]"));
+			    List<WebElement> marketing = table.findElements(By.xpath(".//tr/td[29]"));
+			    
+			
+			    System.out.println(num.get(0).getText());
+			    System.out.println("ffffff");
+			    try {
+					Thread.sleep(2000);			
+				}catch(Exception ee) {ee.printStackTrace();}
+			    try {
+			    	
+			    	st.execute("DELETE FROM `advance_search` where hotel_name='"+hotel[i]+"'");
+				    for(int i1=0;i1<num.size();i1++) {
+				    	
+				    	System.out.println(num.get(i).getText());
+				    	if(i<(num.size()-1)) {
+				    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing,hotel_name) VALUES ("
+				    			+ "'"+num.get(i1).getText()+"',"
+				    			+ "'"+ref_num.get(i1).getText()+"',"
+				    			+ "'"+arr.get(i1).getText()+"',"
+				    			+ "'"+def.get(i1).getText()+"',"
+				    			+ "'"+stay.get(i1).getText()+"',"
+				    			+ "'"+guest.get(i1).getText()+"',"
+				    			+ "'"+room_char.get(i1).getText()+"',"
+				    			+ "'"+other_char.get(i1).getText()+"',"
+				    			+ "'"+total_char.get(i1).getText()+"',"
+				    			+ "'"+balance.get(i1).getText()+"',"
+				    			+ "'"+marketing.get(i1).getText()+"',"
+				    			+ "'"+hotel[i]+"')");}
+				    	else {
+				    		st.execute("INSERT INTO advance_search (num,hotel_name) VALUES ("
+				    				+ "'"+num.get(i1).getText()+"',"
+				    				+ "'"+hotel[i]+"')");}
+				    	}
+				    		
+						    	
+				    }catch(Exception ee) {ee.printStackTrace();}
+			}
+			
+		}
 		
+		textAppend("Clock advance search done getting data\n");
+		driver.get("http://localhost/googleapi/clock-advance_search.php");
+		
+		textAppend("Clock advance search done updating google sheet - "+dtf.format(localTime)+"\n\n");
+		
+		
+		
+		
+		
+		driver.quit();
+	}
+	public void queryMonth() {
+		
+		try {
+			Thread.sleep(4000);			
+		}catch(Exception ee) {ee.printStackTrace();}
 		
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
         Date fromD = cal.getTime();    
         String fromdate = dateformat.format(fromD);
         
@@ -119,136 +224,29 @@ public class AdvanceSearch extends Thread{
         Date toD = cal.getTime();    
         String todate = dateformat.format(toD);
         
-        try {
-			st.execute("DELETE FROM `advance_search`");
+        driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).clear();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).sendKeys(fromdate);
+		                         
+		                             
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).clear();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).sendKeys(todate);
+		                     
+		
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[1]")).click();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[2]")).click();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[3]")).click();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[4]")).click();
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[5]")).click();
+		
+		try {
+			Thread.sleep(2000);			
 		}catch(Exception ee) {ee.printStackTrace();}
-             
-		for(int i=0;i<hotel.length;i++) {
-			driver.get(links[i]);
-			driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).clear();
-			driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).sendKeys(fromdate);
-			driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).clear();
-			driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).sendKeys(todate);
-			
-			try {
-				Thread.sleep(2000);
-			}catch(Exception ee) {ee.printStackTrace();}
-			
-			driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[1]")).click();
-			try {
-				Thread.sleep(200000000);
-			}catch(Exception ee) {ee.printStackTrace();}
-			
-			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[2]/div/div/input")).click();
-			while(true) {
-			
-			if(driver.findElements(By.xpath("/html/body/span[2]/div/table")).size() != 0) {
-				                                                
-				                                         
-				
-				WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/table"));				
-				List<WebElement> tabSize = table.findElements(By.xpath(".//tr"));
-				int tablesize = tabSize.size();
-				System.out.print(tablesize+"---------");
-				
-				
-				
-				for(int i1=1;i1<tablesize;i1++) {
-						
-						List<WebElement> date2 = table.findElements(By.xpath(".//tr["+i1+"]/td[1]"));
-					    List<WebElement> capacity = table.findElements(By.xpath(".//tr["+i1+"]/td[2]"));
-					    List<WebElement> oos = table.findElements(By.xpath(".//tr["+i1+"]/td[3]"));
-					    List<WebElement> booked_rooms = table.findElements(By.xpath(".//tr["+i1+"]/td[4]"));
-					    List<WebElement> booked_percent = table.findElements(By.xpath(".//tr["+i1+"]/td[5]"));
-					    List<WebElement> occupancy = table.findElements(By.xpath(".//tr["+i1+"]/td[6]"));
-					    List<WebElement> occupancy_percent = table.findElements(By.xpath(".//tr["+i1+"]/td[7]"));
-					    List<WebElement> charges = table.findElements(By.xpath(".//tr["+i1+"]/td[8]"));
-					    List<WebElement> adr = table.findElements(By.xpath(".//tr["+i1+"]/td[9]"));
-					    List<WebElement> revpar = table.findElements(By.xpath(".//tr["+i1+"]/td[10]"));
-					    List<WebElement> bednight = table.findElements(By.xpath(".//tr["+i1+"]/td[11]"));
-						
-							 try {	
-								 System.out.println("INSERT INTO occupancy_5days (Hotel, Date, Capacity, OOS, Booked_rooms, Booked_percent, Occupancy, Occupancy_percent, Charges, ADR, RevPAR, Bednights) VALUES ('"+hotel[i]+"', '"+date2.get(0).getText()+"', '"+capacity.get(0).getText()+"', '"+oos.get(0).getText()+"', '"+booked_rooms.get(0).getText()+"', '"+booked_percent.get(0).getText()+"', '"+occupancy.get(0).getText()+"', '"+occupancy_percent.get(0).getText()+"', '"+charges.get(0).getText()+"', '"+adr.get(0).getText()+"', '"+revpar.get(0).getText()+"', '"+bednight.get(0).getText()+"')");
-							    	     st.execute("INSERT INTO occupancy_5days (Hotel, Date, Capacity, OOS, Booked_rooms, Booked_percent, Occupancy, Occupancy_percent, Charges, ADR, RevPAR, Bednights) VALUES ('"+hotel[i]+"', '"+date2.get(0).getText()+"', '"+capacity.get(0).getText()+"', '"+oos.get(0).getText()+"', '"+booked_rooms.get(0).getText()+"', '"+booked_percent.get(0).getText()+"', '"+occupancy.get(0).getText()+"', '"+occupancy_percent.get(0).getText()+"', '"+charges.get(0).getText()+"', '"+adr.get(0).getText()+"', '"+revpar.get(0).getText()+"', '"+bednight.get(0).getText()+"')");				    			
-								 	  
-							 }catch(Exception ee) {}
-				}
-				 System.out.println("------------------00-----------------");
-				 break;
-				}else {
-						System.out.println("table waiting");
-						try {
-							Thread.sleep(2000);
-						}catch(Exception ee) {ee.printStackTrace();}
-					}
-			}
-			
-			
-		}
 		
-        Calendar cal2 = Calendar.getInstance();
-        cal2.add(Calendar.YEAR, +1);
-        Date toY = cal2.getTime();    
-        String toyear = dateformat.format(toY);
-        
-		for(int i=0;i<hotel.length;i++) {
-			driver.get(links[i]);		
-			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[2]/input")).clear();
-			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[2]/input")).sendKeys(toyear);
-			try {
-				Thread.sleep(2000);
-			}catch(Exception ee) {ee.printStackTrace();}
-			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[2]/div/div/input")).click();
-			while(true) {
-			
-			if(driver.findElements(By.xpath("/html/body/span[2]/div/table")).size() != 0) {
-				                                                
-				
-						                                   //html/body/span[2]/div/table/tbody/tr[6]		
-				WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/table"));
-				
-				List<WebElement> tabSize = table.findElements(By.xpath(".//tr"));
-				int tablesize = tabSize.size() - 1; 
-				System.out.print(tablesize+"---------");
-				
-			    List<WebElement> date = table.findElements(By.xpath(".//tr["+tablesize+"]/td[1]"));
-			    List<WebElement> capacity = table.findElements(By.xpath(".//tr["+tablesize+"]/td[2]"));
-			    List<WebElement> oos = table.findElements(By.xpath(".//tr["+tablesize+"]/td[3]"));
-			    List<WebElement> booked_rooms = table.findElements(By.xpath(".//tr["+tablesize+"]/td[4]"));
-			    List<WebElement> booked_percent = table.findElements(By.xpath(".//tr["+tablesize+"]/td[5]"));
-			    List<WebElement> occupancy = table.findElements(By.xpath(".//tr["+tablesize+"]/td[6]"));
-			    List<WebElement> occupancy_percent = table.findElements(By.xpath(".//tr["+tablesize+"]/td[7]"));
-			    List<WebElement> charges = table.findElements(By.xpath(".//tr["+tablesize+"]/td[8]"));
-			    List<WebElement> adr = table.findElements(By.xpath(".//tr["+tablesize+"]/td[9]"));
-			    List<WebElement> revpar = table.findElements(By.xpath(".//tr["+tablesize+"]/td[10]"));
-			    List<WebElement> bednight = table.findElements(By.xpath(".//tr["+tablesize+"]/td[11]"));
-				
-					 try {	
-					    	st.execute("UPDATE occupancy_1year SET Date = '"+toyear+"', Capacity = '"+capacity.get(0).getText()+"', OOS = '"+oos.get(0).getText()+"', Booked_rooms = '"+booked_rooms.get(0).getText()+"', Booked_percent = '"+booked_percent.get(0).getText()+"', Occupancy = '"+occupancy.get(0).getText()+"',Occupancy_percent = '"+occupancy_percent.get(0).getText()+"', Charges = '"+charges.get(0).getText()+"', ADR = '"+adr.get(0).getText()+"', RevPAR = '"+revpar.get(0).getText()+"', Bednights = '"+bednight.get(0).getText()+"' where Hotel='"+hotel[i]+"'");				    			
-						 	System.out.println("UPDATE occupancy SET Date = '"+toyear+"', Capacity = '"+capacity.get(0).getText()+"', OOS = '"+oos.get(0).getText()+"', Booked_rooms = '"+booked_rooms.get(0).getText()+"', Booked_percent = '"+booked_percent.get(0).getText()+"', Occupancy = '"+occupancy.get(0).getText()+"',Occupancy_percent = '"+occupancy_percent.get(0).getText()+"', Charges = '"+charges.get(0).getText()+"', ADR = '"+adr.get(0).getText()+"', RevPAR = '"+revpar.get(0).getText()+"', Bednights = '"+bednight.get(0).getText()+"' where Hotel='"+hotel[i]+"'");  
-					 }catch(Exception ee) {}										
-				 break;
-				}else {
-						System.out.println("table waiting");
-						try {
-							Thread.sleep(2000);
-						}catch(Exception ee) {ee.printStackTrace();}
-					}
-			}
-			
-			
-		}
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[3]/div/button")).click();
 		
-		textAppend("Clock Occupancy done getting data\n");
-		driver.get("http://localhost/googleapi/clock-occupancy.php");
-		
-		textAppend("Clock Occupancy done updating google sheet - "+dtf.format(localTime)+"\n\n");
-		
-		
-		
-		
-		
-		driver.quit();
+		try {
+			Thread.sleep(2000);			
+		}catch(Exception ee) {ee.printStackTrace();}
 	}
 	public void setDataBaseConnection() {
 		while(true) {

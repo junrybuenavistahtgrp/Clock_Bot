@@ -34,12 +34,30 @@ public class test {
 		dateformat = new SimpleDateFormat("MM/1/yyyy");
 		
 	
-		driver.get("file:///C:/xampp/htdocs/Test/test2/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
+		driver.get("file:///C:/xampp/htdocs/Test/test4/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
+		
+		driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+		
+		//driver.findElement(By.xpath("/html/body/span[1]/nav/div/div/div[2]/div/a[1]")).click();
+	
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
+		
+		
+		
 		
 		if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {		                           
 			System.out.println("Not Found");			
 		}else {
 			System.out.println("Found");
+			
 			WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div[4]/table"));
 		    List<WebElement> num = table.findElements(By.xpath(".//tr/td[1]"));
 		    List<WebElement> ref_num = table.findElements(By.xpath(".//tr/td[3]"));
@@ -66,7 +84,7 @@ public class test {
 			    	
 			    	System.out.println(num.get(i).getText());
 			    	if(i<(num.size()-1)) {
-			    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing) VALUES ("
+			    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing,hotel_name) VALUES ("
 			    			+ "'"+num.get(i).getText()+"',"
 			    			+ "'"+ref_num.get(i).getText()+"',"
 			    			+ "'"+arr.get(i).getText()+"',"
@@ -77,10 +95,12 @@ public class test {
 			    			+ "'"+other_char.get(i).getText()+"',"
 			    			+ "'"+total_char.get(i).getText()+"',"
 			    			+ "'"+balance.get(i).getText()+"',"
-			    			+ "'"+marketing.get(i).getText()+"')");}
+			    			+ "'"+marketing.get(i).getText()+"',"
+			    			+ "'Aqua Hotel')");}
 			    	else {
-			    		st.execute("INSERT INTO advance_search (num) VALUES ("
-				    			+ "'"+num.get(i).getText()+"')");}
+			    		st.execute("INSERT INTO advance_search (num,hotel_name) VALUES ("
+			    				+ "'"+num.get(i).getText()+"',"
+			    				+ "'Aqua Hotel')");}
 			    	}
 			    		
 					    	

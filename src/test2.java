@@ -22,6 +22,7 @@ public class test2 {
 		
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
         Date fromD = cal.getTime();    
         String fromdate = dateformat.format(fromD);
         
