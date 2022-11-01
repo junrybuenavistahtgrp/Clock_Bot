@@ -120,18 +120,18 @@ public class AdvanceSearch extends Thread{
 						try {
 							Thread.sleep(2000);			
 						}catch(Exception ee) {ee.printStackTrace();}
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
-						
-						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
+						                         
+						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[2]/input")).click();
 						                       
 						try {
 							Thread.sleep(4000);			
@@ -143,7 +143,8 @@ public class AdvanceSearch extends Thread{
 				Thread.sleep(2000);			
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {		                           
+			if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {	
+				
 				System.out.println("Not Found");			
 			}else {
 				System.out.println("Found");
