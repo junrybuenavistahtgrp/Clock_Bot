@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JTextArea;
@@ -71,7 +72,7 @@ public class AdvanceSearch extends Thread{
 	}
 	public void Login(String serial,String user,String pass) {
 		
-		textAppend("Clock Occupancy report starting - "+dtf.format(localTime)+"\n");
+		textAppend("Clock Advance search starting - "+dtf.format(localTime)+"\n");
 		setBrowser();
 		driver.manage().window().maximize();
 		driver.get("https://sky-us2.clock-software.com/");
@@ -105,7 +106,7 @@ public class AdvanceSearch extends Thread{
 	public void run() {
 		
 		Login("7780186186722297726985559","reports","NBVreports2020!");
-		textAppend("Clock Occupancy getting data\n");
+		textAppend("Clock Advance search getting data\n");
 		
 		 
 		for(int i=0;i<hotel.length;i++) {
@@ -113,29 +114,30 @@ public class AdvanceSearch extends Thread{
 			
 			queryMonth();
 			
-			if(i==0) {
-				
-				driver.findElement(By.xpath("/html/body/span[1]/nav/div/div/div[2]/div/a[1]")).click();
-				try {
-					Thread.sleep(2000);			
-				}catch(Exception ee) {ee.printStackTrace();}
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
-				driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
-				
-				driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[2]/input")).click();
-				try {
-					Thread.sleep(4000);			
-				}catch(Exception ee) {ee.printStackTrace();}
-				
-			}
+					if(i==0) {
+						
+						driver.findElement(By.xpath("/html/body/span[1]/nav/div/div/div[2]/div/a[1]")).click();
+						try {
+							Thread.sleep(2000);			
+						}catch(Exception ee) {ee.printStackTrace();}
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
+						
+						driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+						                       
+						try {
+							Thread.sleep(4000);			
+						}catch(Exception ee) {ee.printStackTrace();}
+						
+					}
 			
 			try {
 				Thread.sleep(2000);			
@@ -170,15 +172,15 @@ public class AdvanceSearch extends Thread{
 			    	st.execute("DELETE FROM `advance_search` where hotel_name='"+hotel[i]+"'");
 				    for(int i1=0;i1<num.size();i1++) {
 				    	
-				    	System.out.println(num.get(i).getText());
-				    	if(i<(num.size()-1)) {
+				    	System.out.println(num.get(i1).getText());
+				    	if(i1<(num.size()-1)) {
 				    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing,hotel_name) VALUES ("
 				    			+ "'"+num.get(i1).getText()+"',"
 				    			+ "'"+ref_num.get(i1).getText()+"',"
 				    			+ "'"+arr.get(i1).getText()+"',"
 				    			+ "'"+def.get(i1).getText()+"',"
 				    			+ "'"+stay.get(i1).getText()+"',"
-				    			+ "'"+guest.get(i1).getText()+"',"
+				    			+ "'"+checkAppos(guest.get(i1).getText())+"',"
 				    			+ "'"+room_char.get(i1).getText()+"',"
 				    			+ "'"+other_char.get(i1).getText()+"',"
 				    			+ "'"+total_char.get(i1).getText()+"',"
@@ -208,6 +210,20 @@ public class AdvanceSearch extends Thread{
 		
 		driver.quit();
 	}
+	public String checkAppos(String in) {
+		String ret="";
+		StringTokenizer tok= new StringTokenizer(in,"'");
+		int index= tok.countTokens();
+		int pos= 1;
+		while(tok.hasMoreTokens()) {
+		    if(pos==index)
+		    	ret+=tok.nextToken();
+		    else
+		    	ret+=tok.nextToken()+"''";
+		    pos++;
+		}
+		return ret;
+	}
 	public void queryMonth() {
 		
 		try {
@@ -231,6 +247,9 @@ public class AdvanceSearch extends Thread{
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).clear();
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).sendKeys(todate);
 		                     
+		try {
+			Thread.sleep(2000);			
+		}catch(Exception ee) {ee.printStackTrace();}
 		
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[1]")).click();
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[8]/div/div/label[2]")).click();
@@ -245,7 +264,7 @@ public class AdvanceSearch extends Thread{
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[3]/div/button")).click();
 		
 		try {
-			Thread.sleep(2000);			
+			Thread.sleep(6000);			
 		}catch(Exception ee) {ee.printStackTrace();}
 	}
 	public void setDataBaseConnection() {

@@ -31,25 +31,36 @@ public class Clock_bot extends Thread{
 	WebDriver driver;
 	JTextArea area;
 	JTextArea area2;
+	JTextArea area3;
+	SimpleDateFormat dateFormat;
 	public Clock_bot() {
+		
+		dateFormat = new SimpleDateFormat("yyyy-MM-1");
 		GUI gui = new GUI();
 	}
 	
 	public void run() {
 		
-		new AdvanceSearch(area).start();	
-	/*	
+		
+		String  curday = "";
 		new Occupancy(area).start();
 		new Arrival(area2).start();
 		while(true) {
 			
 			try {
 				Thread.sleep(1800000);
+				//Thread.sleep(2000);
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			new Occupancy(area).start();
-			new Arrival(area2).start();
-		} */
+				new Occupancy(area).start();
+				new Arrival(area2).start();
+				 if(!curday.equalsIgnoreCase(dateFormat.format(new Date()))) { 
+					
+					 curday = dateFormat.format(new Date());
+					 System.out.println(curday);
+					 new AdvanceSearch(area3).start();
+				 }
+		} 
 		
 	}
 	class GUI  
@@ -60,6 +71,8 @@ public class Clock_bot extends Thread{
 		    	 area.setEditable(false);
 		    	 area2=new JTextArea();
 		    	 area2.setEditable(false);
+		    	 area3=new JTextArea();
+		    	 area3.setEditable(false);
 		    	
 		    	 
 		    	 JScrollPane scrollableTextArea = new JScrollPane(area);
@@ -73,14 +86,22 @@ public class Clock_bot extends Thread{
 				        public void adjustmentValueChanged(AdjustmentEvent e) {  
 				            e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
 				        }
+				    });
+				   
+				   JScrollPane scrollableTextArea3 = new JScrollPane(area3);
+				   scrollableTextArea.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+				        public void adjustmentValueChanged(AdjustmentEvent e) {  
+				            e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
+				        }
 				    }); 
 				   
-		    	 JFrame frame=new JFrame("Clock Bot is Running");
+		    	 JFrame frame=new JFrame("Clock Bots is Running");
 		    	 frame.add(scrollableTextArea2);
 		    	 frame.add(scrollableTextArea);
+		    	 frame.add(scrollableTextArea3);
 		    	 frame.setLayout(new GridLayout()); 
 		    	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    	 frame.setSize(700,750);
+		    	 frame.setSize(1000,750);
 		    	 frame.setLocationRelativeTo(null);
 		    	 frame.setVisible(true);
 	     }

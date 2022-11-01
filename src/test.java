@@ -42,7 +42,7 @@ public class test {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}
 		
-		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[2]/input")).click();	
+		//driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[2]/input")).click();	
 	
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
@@ -53,6 +53,7 @@ public class test {
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
 		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div/div[2]/div/form/div[1]/div[44]/div/label/input")).click();
 		
 		Jscript = (JavascriptExecutor) driver;
 	
