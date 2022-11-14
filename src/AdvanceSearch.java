@@ -143,60 +143,68 @@ public class AdvanceSearch extends Thread{
 				Thread.sleep(2000);			
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {	
-				
-				System.out.println("Not Found");			
-			}else {
-				System.out.println("Found");
-				
-				WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div[4]/table"));
-			    List<WebElement> num = table.findElements(By.xpath(".//tr/td[1]"));
-			    List<WebElement> ref_num = table.findElements(By.xpath(".//tr/td[3]"));
-			    List<WebElement> arr = table.findElements(By.xpath(".//tr/td[4]"));
-			    List<WebElement> def = table.findElements(By.xpath(".//tr/td[5]"));
-			    List<WebElement> stay = table.findElements(By.xpath(".//tr/td[6]"));
-			    List<WebElement> guest = table.findElements(By.xpath(".//tr/td[7]"));
-			    List<WebElement> room_char = table.findElements(By.xpath(".//tr/td[22]"));
-			    List<WebElement> other_char = table.findElements(By.xpath(".//tr/td[25]"));
-			    List<WebElement> total_char = table.findElements(By.xpath(".//tr/td[26]"));
-			    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[27]"));
-			    List<WebElement> marketing = table.findElements(By.xpath(".//tr/td[29]"));
-			    
-			
-			    System.out.println(num.get(0).getText());
-			    System.out.println("ffffff");
-			    try {
-					Thread.sleep(2000);			
-				}catch(Exception ee) {ee.printStackTrace();}
-			    try {
-			    	
-			    	st.execute("DELETE FROM `advance_search` where hotel_name='"+hotel[i]+"'");
-				    for(int i1=0;i1<num.size();i1++) {
-				    	
-				    	System.out.println(num.get(i1).getText());
-				    	if(i1<(num.size()-1)) {
-				    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing,hotel_name) VALUES ("
-				    			+ "'"+num.get(i1).getText()+"',"
-				    			+ "'"+ref_num.get(i1).getText()+"',"
-				    			+ "'"+arr.get(i1).getText()+"',"
-				    			+ "'"+def.get(i1).getText()+"',"
-				    			+ "'"+stay.get(i1).getText()+"',"
-				    			+ "'"+checkAppos(guest.get(i1).getText())+"',"
-				    			+ "'"+room_char.get(i1).getText()+"',"
-				    			+ "'"+other_char.get(i1).getText()+"',"
-				    			+ "'"+total_char.get(i1).getText()+"',"
-				    			+ "'"+balance.get(i1).getText()+"',"
-				    			+ "'"+marketing.get(i1).getText()+"',"
-				    			+ "'"+hotel[i]+"')");}
-				    	else {
-				    		st.execute("INSERT INTO advance_search (num,hotel_name) VALUES ("
-				    				+ "'"+num.get(i1).getText()+"',"
-				    				+ "'"+hotel[i]+"')");}
-				    	}
-				    		
+			while(true) {
+						
+						try {
+							Thread.sleep(1000);
+						}catch(Exception ee) {ee.printStackTrace();}
+						
+						if(driver.findElements(By.xpath("/html/body/span[2]/div/div/div[4]/table")).size() == 0) {	
+							                        
+							System.out.println("Not Found");			
+						}else {
+							System.out.println("Found");
+							
+							WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/div/div[4]/table"));
+						    List<WebElement> num = table.findElements(By.xpath(".//tr/td[1]"));
+						    List<WebElement> ref_num = table.findElements(By.xpath(".//tr/td[3]"));
+						    List<WebElement> arr = table.findElements(By.xpath(".//tr/td[4]"));
+						    List<WebElement> def = table.findElements(By.xpath(".//tr/td[5]"));
+						    List<WebElement> stay = table.findElements(By.xpath(".//tr/td[6]"));
+						    List<WebElement> guest = table.findElements(By.xpath(".//tr/td[7]"));
+						    List<WebElement> room_char = table.findElements(By.xpath(".//tr/td[22]"));
+						    List<WebElement> other_char = table.findElements(By.xpath(".//tr/td[25]"));
+						    List<WebElement> total_char = table.findElements(By.xpath(".//tr/td[26]"));
+						    List<WebElement> balance = table.findElements(By.xpath(".//tr/td[27]"));
+						    List<WebElement> marketing = table.findElements(By.xpath(".//tr/td[29]"));
+						    
+						
+						    System.out.println(num.get(0).getText());
+						    System.out.println("ffffff");
+						    try {
+								Thread.sleep(2000);			
+							}catch(Exception ee) {ee.printStackTrace();}
+						    try {
 						    	
-				    }catch(Exception ee) {ee.printStackTrace();}
-			}
+						    	st.execute("DELETE FROM `advance_search` where hotel_name='"+hotel[i]+"'");
+							    for(int i1=0;i1<num.size();i1++) {
+							    	
+							    	System.out.println(num.get(i1).getText());
+							    	if(i1<(num.size()-1)) {
+							    	st.execute("INSERT INTO advance_search (num,ref_num,arr,def,stay,guest,room_char,other_char,total_char,balance,marketing,hotel_name) VALUES ("
+							    			+ "'"+num.get(i1).getText()+"',"
+							    			+ "'"+ref_num.get(i1).getText()+"',"
+							    			+ "'"+arr.get(i1).getText()+"',"
+							    			+ "'"+def.get(i1).getText()+"',"
+							    			+ "'"+stay.get(i1).getText()+"',"
+							    			+ "'"+checkAppos(guest.get(i1).getText())+"',"
+							    			+ "'"+room_char.get(i1).getText()+"',"
+							    			+ "'"+other_char.get(i1).getText()+"',"
+							    			+ "'"+total_char.get(i1).getText()+"',"
+							    			+ "'"+balance.get(i1).getText()+"',"
+							    			+ "'"+marketing.get(i1).getText()+"',"
+							    			+ "'"+hotel[i]+"')");}
+							    	else {
+							    		st.execute("INSERT INTO advance_search (num,hotel_name) VALUES ("
+							    				+ "'"+num.get(i1).getText()+"',"
+							    				+ "'"+hotel[i]+"')");}
+							    	}
+							    		
+									    	
+							    }catch(Exception ee) {ee.printStackTrace();}
+						    break;
+						}
+			 }
 			
 		}
 		
