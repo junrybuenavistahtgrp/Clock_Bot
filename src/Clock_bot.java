@@ -45,6 +45,8 @@ public class Clock_bot extends Thread{
 		String  curday = "";
 		new Occupancy(area).start();
 		new Arrival(area2).start();
+		//new AdvanceSearch(area3).start();
+		
 		while(true) {
 			
 			try {
@@ -95,7 +97,7 @@ public class Clock_bot extends Thread{
 				        }
 				    }); 
 				   
-		    	 JFrame frame=new JFrame("Clock Bots is Running");
+		    	 JFrame frame=new JFrame("Clock BOT is Running");
 		    	 frame.add(scrollableTextArea2);
 		    	 frame.add(scrollableTextArea);
 		    	 frame.add(scrollableTextArea3);

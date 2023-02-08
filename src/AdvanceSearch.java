@@ -32,7 +32,7 @@ public class AdvanceSearch extends Thread{
     SimpleDateFormat dateformat = new SimpleDateFormat("dd MMM yyyy");
     
 	
-	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset"};
+	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
 	String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12510/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12034/bookings/advanced_search",
@@ -42,7 +42,8 @@ public class AdvanceSearch extends Thread{
 					 "https://sky-us2.clock-software.com/77801/11718/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12512/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12509/bookings/advanced_search",
-					 "https://sky-us2.clock-software.com/77801/12513/bookings/advanced_search"};
+					 "https://sky-us2.clock-software.com/77801/12513/bookings/advanced_search",
+					 "https://sky-us2.clock-software.com/77801/12950/bookings/advanced_search"};
 	
 	
 	
