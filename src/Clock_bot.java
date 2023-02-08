@@ -26,7 +26,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 
-
+//clock test pull
 public class Clock_bot extends Thread{
 	WebDriver driver;
 	JTextArea area;
