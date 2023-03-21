@@ -70,39 +70,41 @@ public class Occupancy extends Thread{
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
 	}
-	public void Login(String serial,String user,String pass) {
-		
-		textAppend("Clock Occupancy report starting - "+dtf.format(localTime)+"\n");
-		setBrowser();
-		driver.manage().window().maximize();
-		driver.get("https://sky-us2.clock-software.com/");
-		driver.switchTo().defaultContent();
-		try {
-			Thread.sleep(2000);			
-		}catch(Exception ee) {ee.printStackTrace();}
-		
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
-		try {
-			Thread.sleep(4000);			
-		}catch(Exception ee) {ee.printStackTrace();}                             
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button")).click();							
-		                           
-		try {
-			Thread.sleep(5000);			
-		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div/label/div/div[1]/div/input")).sendKeys(user);
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]")).click();
-		try {
-			Thread.sleep(5000);			
-		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[1]/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div/div[2]/button[2]")).click();
-		textAppend("Clock Occupancy done login\n");
-		try {
-			Thread.sleep(5000);			
-		}catch(Exception ee) {ee.printStackTrace();}		
-		driver.get("https://sky-us2.clock-software.com/77801/12036/reports");
-	}	
+	  public void Login(String serial,String user,String pass) {
+	    	
+			textAppend("Clock Arrival report starting - "+dtf.format(localTime)+"\n");
+			setBrowser();
+			driver.manage().window().maximize();
+			driver.get("https://sky-us2.clock-software.com/");
+			driver.switchTo().defaultContent();
+			try {
+				Thread.sleep(2000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+			
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
+			                             	
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[3]/button")).click();	                       
+			                              
+			try {
+				Thread.sleep(5000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(user);
+			                             
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/button[2]")).click();
+			                             
+			try {
+				Thread.sleep(5000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+			                             
+			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[5]/button[2]")).click();
+			                             
+			textAppend("Clock Arrival done login\n");
+			try {
+				Thread.sleep(5000);			
+			}catch(Exception ee) {ee.printStackTrace();}		
+			driver.get("https://sky-us2.clock-software.com/77801/12036/reports");
+		}	
 	
 	public void run() {
 		
