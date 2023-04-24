@@ -145,7 +145,7 @@ public class Occupancy extends Thread{
 				}
 			}
 		}
-		
+		//----------------5days-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, +1);
         Date fromD = cal.getTime();    
@@ -215,6 +215,79 @@ public class Occupancy extends Thread{
 			
 		}
 		
+		//---------------------------10days---------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+	    cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, +1);
+        fromD = cal.getTime();    
+        fromdate = dateformat.format(fromD);
+        
+        cal.add(Calendar.DATE, +9);
+        toD = cal.getTime();    
+        todate = dateformat.format(toD);
+        
+        try {
+			st.execute("DELETE FROM `occupancy_10days`");
+		}catch(Exception ee) {ee.printStackTrace();}
+             
+		for(int i=0;i<hotel.length;i++) {
+			driver.get(links[i]);
+			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[1]/input")).clear();
+			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[1]/input")).sendKeys(fromdate);
+			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[2]/input")).clear();
+			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[1]/div[1]/div/div/div/div[2]/input")).sendKeys(todate);
+			try {
+				Thread.sleep(2000);
+			}catch(Exception ee) {ee.printStackTrace();}
+			driver.findElement(By.xpath("/html/body/span[2]/div/form/div/div[2]/div/div/input")).click();
+			while(true) {
+			
+			if(driver.findElements(By.xpath("/html/body/span[2]/div/table")).size() != 0) {
+				                                                
+				                                                //html/body/span[2]/div/table/tbody/tr[6]
+				
+				WebElement table = driver.findElement(By.xpath("/html/body/span[2]/div/table"));				
+				List<WebElement> tabSize = table.findElements(By.xpath(".//tr"));
+				int tablesize = tabSize.size();
+				System.out.print(tablesize+"---------");
+				
+				
+				
+				for(int i1=1;i1<tablesize;i1++) {
+						
+						   List<WebElement> date2 = table.findElements(By.xpath(".//tr["+i1+"]/td[1]"));
+					    List<WebElement> capacity = table.findElements(By.xpath(".//tr["+i1+"]/td[2]"));
+					    List<WebElement> oos = table.findElements(By.xpath(".//tr["+i1+"]/td[3]"));
+					    List<WebElement> booked_rooms = table.findElements(By.xpath(".//tr["+i1+"]/td[4]"));
+					    List<WebElement> booked_percent = table.findElements(By.xpath(".//tr["+i1+"]/td[5]"));
+					    List<WebElement> occupancy = table.findElements(By.xpath(".//tr["+i1+"]/td[6]"));
+					    List<WebElement> occupancy_percent = table.findElements(By.xpath(".//tr["+i1+"]/td[7]"));
+					    List<WebElement> charges = table.findElements(By.xpath(".//tr["+i1+"]/td[8]"));
+					    List<WebElement> adr = table.findElements(By.xpath(".//tr["+i1+"]/td[9]"));
+					    List<WebElement> revpar = table.findElements(By.xpath(".//tr["+i1+"]/td[10]"));
+					    List<WebElement> bednight = table.findElements(By.xpath(".//tr["+i1+"]/td[11]"));
+						
+							 try {	
+								 System.out.println("INSERT INTO occupancy_10days (Hotel, Date, Capacity, OOS, Booked_rooms, Booked_percent, Occupancy, Occupancy_percent, Charges, ADR, RevPAR, Bednights) VALUES ('"+hotel[i]+"', '"+date2.get(0).getText()+"', '"+capacity.get(0).getText()+"', '"+oos.get(0).getText()+"', '"+booked_rooms.get(0).getText()+"', '"+booked_percent.get(0).getText()+"', '"+occupancy.get(0).getText()+"', '"+occupancy_percent.get(0).getText()+"', '"+charges.get(0).getText()+"', '"+adr.get(0).getText()+"', '"+revpar.get(0).getText()+"', '"+bednight.get(0).getText()+"')");
+							    	     st.execute("INSERT INTO occupancy_10days (Hotel, Date, Capacity, OOS, Booked_rooms, Booked_percent, Occupancy, Occupancy_percent, Charges, ADR, RevPAR, Bednights) VALUES ('"+hotel[i]+"', '"+date2.get(0).getText()+"', '"+capacity.get(0).getText()+"', '"+oos.get(0).getText()+"', '"+booked_rooms.get(0).getText()+"', '"+booked_percent.get(0).getText()+"', '"+occupancy.get(0).getText()+"', '"+occupancy_percent.get(0).getText()+"', '"+charges.get(0).getText()+"', '"+adr.get(0).getText()+"', '"+revpar.get(0).getText()+"', '"+bednight.get(0).getText()+"')");				    			
+								 	  
+							 }catch(Exception ee) {}
+				}
+				 System.out.println("------------------00-----------------");
+				 break;
+				}else {
+						System.out.println("table waiting");
+						try {
+							Thread.sleep(2000);
+						}catch(Exception ee) {ee.printStackTrace();}
+					}
+			}
+			
+			
+		}
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
         Calendar cal2 = Calendar.getInstance();
         cal2.add(Calendar.YEAR, +1);
         Date toY = cal2.getTime();    
