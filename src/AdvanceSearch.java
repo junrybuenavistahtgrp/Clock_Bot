@@ -31,6 +31,8 @@ public class AdvanceSearch extends Thread{
     LocalTime localTime;
     SimpleDateFormat dateformat = new SimpleDateFormat("dd MMM yyyy");
     
+   // String hotel[]= {"Aqua Hotel"};
+   // String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search"};
 	
 	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
 	String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search",
