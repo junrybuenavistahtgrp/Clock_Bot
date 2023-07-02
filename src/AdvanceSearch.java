@@ -216,7 +216,7 @@ public class AdvanceSearch extends Thread{
 		
 		textAppend("Clock advance search done getting data\n");
 		textAppend("Update date: "+dateformat.format(new Date())+"\n");
-		//driver.get("http://localhost/googleapi/clock-advance_search.php");
+		driver.get("http://localhost/googleapi/clock-advance_search.php");
 		
 		textAppend("Clock advance search done updating google sheet - "+dtf.format(localTime)+"\n\n");
 		
