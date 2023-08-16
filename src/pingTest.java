@@ -27,11 +27,11 @@ public class pingTest {
 				Thread.sleep(1500);
 				Class.forName("com.mysql.jdbc.Driver");  
 				Connection con=DriverManager.getConnection(  
-				"jdbc:mysql://localhost:3306/bodaping","root","");  	
+				"jdbc:mysql://bukidnon-resorts.info/u798452166_mangoiboda","u798452166_mangoiboda","Mangoi123");  	
 				 st=con.createStatement();
 				 break;
 				
-			   }catch(Exception e){}
+			   }catch(Exception e){e.printStackTrace();}
 		}
 	}	
 	public void updatePing() {
