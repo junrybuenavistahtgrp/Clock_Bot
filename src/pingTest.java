@@ -8,27 +8,54 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import java.sql.ResultSet;
+
 import java.io.*;
 
 public class pingTest {
 	Statement st;
+	Statement st2;
 	SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
 	public pingTest() {
 		System.out.println(dformat.format(new Date()));
-		setDataBaseConnection();
-		
+		setNgrok();
+		//setDataBaseConnection("0.tcp.ap.ngrok.io:11905");
 		updatePing();
 	}
-	public void setDataBaseConnection() {
+	public void setDataBaseConnection(String link) throws Exception {
+			System.out.println("Database connecting");	
+		 
+				Thread.sleep(1500);
+				Class.forName("com.mysql.jdbc.Driver");
+				System.out.println("jdbc:mysql://"+link+"/bodaping");
+				Connection con=DriverManager.getConnection(  
+				"jdbc:mysql://"+link+"/bodaping","root","");  	
+				 st=con.createStatement();			
+		
+	
+	}
+	public void setNgrok() {
 		while(true) {
-			System.out.println("Database connecting");
+			System.out.println("Ngrok connecting");
 			
 			try{  
 				Thread.sleep(1500);
 				Class.forName("com.mysql.jdbc.Driver");  
-				Connection con=DriverManager.getConnection(  
-				"jdbc:mysql://bukidnon-resorts.info/u798452166_mangoiboda","u798452166_mangoiboda","Mangoi123");  	
-				 st=con.createStatement();
+				Connection con2=DriverManager.getConnection(
+				"jdbc:mysql://mindanaotravelguide.info/u798452166_ngrok","u798452166_link","Mangoi123");  	
+				 st2=con2.createStatement();
+				 while(true) {
+					 try {
+						 ResultSet rs = st2.executeQuery("Select * from ngrok where name = 'mylink'");
+						 String ngrok="";
+						 rs.next();
+						 ngrok = rs.getString("Link");	
+						 System.out.println(ngrok);
+						 setDataBaseConnection(ngrok);
+						 break;
+					 }catch(Exception ee) {System.out.println("Retrying");}
+				 }
 				 break;
 				
 			   }catch(Exception e){e.printStackTrace();}
@@ -66,7 +93,7 @@ public class pingTest {
 			            	if(timeout>3)
 			            	     st.execute("UPDATE `ping` SET myping = '"+pingResult+"', status = '2', updated = '"+dformat.format(new Date())+"' WHERE mac = '"+getMac()+"'");
 			            	else st.execute("UPDATE `ping` SET myping = '"+pingResult+"', status = '1', updated = '"+dformat.format(new Date())+"' WHERE mac = '"+getMac()+"'");
-			            }catch(Exception ee) {ee.printStackTrace();}
+			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
 		            
 	            }    
 	            //in.close();
