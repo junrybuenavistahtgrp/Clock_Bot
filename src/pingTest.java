@@ -90,7 +90,7 @@ public class pingTest {
 			            try {
 			            System.out.println(getMac());
 			           
-			            	if(timeout>3)
+			            	if(timeout>2)
 			            	     st.execute("UPDATE `ping` SET myping = '"+pingResult+"', status = '2', updated = '"+dformat.format(new Date())+"' WHERE mac = '"+getMac()+"'");
 			            	else st.execute("UPDATE `ping` SET myping = '"+pingResult+"', status = '1', updated = '"+dformat.format(new Date())+"' WHERE mac = '"+getMac()+"'");
 			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
