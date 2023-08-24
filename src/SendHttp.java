@@ -94,7 +94,7 @@ public class SendHttp {
 			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
 		            
 	            }    
-	            //in.close();
+	            ///in.close();
 
 	        } catch (IOException e) {
 	            System.out.println(e);
