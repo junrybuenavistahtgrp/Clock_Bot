@@ -3,6 +3,9 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,13 +16,42 @@ import java.util.StringTokenizer;
 public class SendHttp {
 	Statement st;
 	Statement st2;
+	String Link="";
 	SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
 	public SendHttp() {
 		System.out.println(dformat.format(new Date()));
 		
 		//replaceSt("Reply from 180.150.230.195: bytes=32 time=231ms TTL=109");
+		setNgrok();
 		updatePing();
 	}
+	
+	public void setNgrok() {
+		while(true) {
+			System.out.println("Ngrok connecting");
+			
+			try{  
+				Thread.sleep(1500);
+				Class.forName("com.mysql.jdbc.Driver");  
+				Connection con2=DriverManager.getConnection(
+				"jdbc:mysql://mindanaotravelguide.info/u798452166_ngrok","u798452166_link","Mangoi123");  	
+				 st2=con2.createStatement();
+				 while(true) {
+					 try {
+						 ResultSet rs = st2.executeQuery("Select * from ngrok where name = 'mylink'");
+						 String ngrok="";
+						 rs.next();
+						 ngrok = rs.getString("Link");	
+						 System.out.println(ngrok);
+						 Link=ngrok;
+						 break;
+					 }catch(Exception ee) {System.out.println("Retrying");}
+				 }
+				 break;
+				//ff
+			   }catch(Exception e){e.printStackTrace();}
+		}
+	}	
 	
 	public void updatePing() {
 		 String ip = "180.150.230.195 -t";
@@ -55,11 +87,11 @@ public class SendHttp {
 			            System.out.println("-------------"+timeout);
 			            try {
 			            System.out.println(getMac());
-			           
+			            Link = "http://localhost";
 			            	if(timeout>2)
-			            		 sendPost("http://localhost/Webtest/latency/server.php?ping="+pingResult+"&status=2mac="+getMac());
-			            	else sendPost("http://localhost/Webtest/latency/server.php?ping="+pingResult+"&status=1&mac="+getMac());
-			            }catch(Exception ee) {ee.printStackTrace();updatePing();}
+			            		 sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=2mac="+getMac());
+			            	else sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=1&mac="+getMac());
+			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
 		            
 	            }    
 	            //in.close();
