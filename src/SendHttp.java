@@ -87,9 +87,9 @@ public class SendHttp {
 			            System.out.println("-------------"+timeout);
 			            try {
 			            System.out.println(getMac());
-			            Link = "http://localhost";
+			            //Link = "http://localhost";
 			            	if(timeout>2)
-			            		 sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=2mac="+getMac());
+			            		 sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=2&mac="+getMac());
 			            	else sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=1&mac="+getMac());
 			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
 		            
