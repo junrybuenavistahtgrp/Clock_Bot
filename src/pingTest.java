@@ -57,7 +57,7 @@ public class pingTest {
 					 }catch(Exception ee) {System.out.println("Retrying");}
 				 }
 				 break;
-				//ff
+				//ffgg
 			   }catch(Exception e){e.printStackTrace();}
 		}
 	}	
