@@ -44,7 +44,7 @@ public class Clock_bot extends Thread{
 		
 		String  curday = "";
 		new Occupancy(area).start();
-		//new Arrival(area2).start();
+		new Arrival(area2).start();
 	
 		while(true) {
 			
