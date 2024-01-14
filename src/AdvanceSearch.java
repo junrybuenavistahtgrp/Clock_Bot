@@ -34,9 +34,8 @@ public class AdvanceSearch extends Thread{
    // String hotel[]= {"Aqua Hotel"};fff
    // String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search"};
 	
-	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
-	String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search",
-					 "https://sky-us2.clock-software.com/77801/12510/bookings/advanced_search",
+	String hotel[]= {"LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
+	String links[]= {"https://sky-us2.clock-software.com/77801/12510/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12034/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12511/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12037/bookings/advanced_search",

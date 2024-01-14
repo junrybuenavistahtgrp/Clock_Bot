@@ -34,7 +34,7 @@ public class Arrival extends Thread{
 	JTextArea area;
 	DateTimeFormatter dtf;
     LocalTime localTime;
-    String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
+    String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset"};
     String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12510/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12034/bookings/arrivals_search",
@@ -44,8 +44,7 @@ public class Arrival extends Thread{
 					 "https://sky-us2.clock-software.com/77801/11718/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12512/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12509/bookings/arrivals_search",
-					 "https://sky-us2.clock-software.com/77801/12513/bookings/arrivals_search",
-					 "https://sky-us2.clock-software.com/77801/12950/bookings/arrivals_search"};
+					 "https://sky-us2.clock-software.com/77801/12513/bookings/arrivals_search"};
     public Arrival(JTextArea area) {
 		setDataBaseConnection();
 		this.area=area;

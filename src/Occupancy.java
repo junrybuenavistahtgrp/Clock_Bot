@@ -31,9 +31,8 @@ public class Occupancy extends Thread{
     SimpleDateFormat dateformat = new SimpleDateFormat("dd MMM yyyy");
     
 	
-	String hotel[]= {"AirBnB","Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset"};
-	String links[]= {"https://sky-us2.clock-software.com/77801/12950/occupancy_incomes_report",
-					 "https://sky-us2.clock-software.com/77801/12036/occupancy_incomes_report",
+	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset"};
+	String links[]= {"https://sky-us2.clock-software.com/77801/12036/occupancy_incomes_report",
 					 "https://sky-us2.clock-software.com/77801/12510/occupancy_incomes_report",
 					 "https://sky-us2.clock-software.com/77801/12034/occupancy_incomes_report",
 					 "https://sky-us2.clock-software.com/77801/12511/occupancy_incomes_report",
