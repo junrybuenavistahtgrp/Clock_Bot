@@ -345,7 +345,9 @@ public class Occupancy extends Thread{
 		
 		textAppend("Clock Occupancy done updating google sheet - "+dtf.format(localTime)+"\n\n");
 		
-		
+		try {
+			Thread.sleep(15000);
+		}catch(Exception ee) {ee.printStackTrace();}
 		
 		
 		
