@@ -34,7 +34,7 @@ public class Arrival extends Thread{
 	JTextArea area;
 	DateTimeFormatter dtf;
     LocalTime localTime;
-    String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
+    String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset"};
     String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12510/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12034/bookings/arrivals_search",
@@ -44,8 +44,7 @@ public class Arrival extends Thread{
 					 "https://sky-us2.clock-software.com/77801/11718/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12512/bookings/arrivals_search",
 					 "https://sky-us2.clock-software.com/77801/12509/bookings/arrivals_search",
-					 "https://sky-us2.clock-software.com/77801/12513/bookings/arrivals_search",
-					 "https://sky-us2.clock-software.com/77801/12950/bookings/arrivals_search"};
+					 "https://sky-us2.clock-software.com/77801/12513/bookings/arrivals_search"};
     public Arrival(JTextArea area) {
 		setDataBaseConnection();
 		this.area=area;
@@ -81,23 +80,23 @@ public class Arrival extends Thread{
 			Thread.sleep(2000);			
 		}catch(Exception ee) {ee.printStackTrace();}
 		
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
 		                             	
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[3]/button")).click();	                       
-		                              
-		try {
-			Thread.sleep(5000);			
-		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(user);
-		                             
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/button[2]")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[3]/button")).click();	                       
 		                             
 		try {
 			Thread.sleep(5000);			
 		}catch(Exception ee) {ee.printStackTrace();}
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(user);
 		                             
-		driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[5]/button[2]")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[2]/button[2]")).click();
+		                             
+		try {
+			Thread.sleep(5000);			
+		}catch(Exception ee) {ee.printStackTrace();}
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+		                             
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[5]/button[2]")).click();
 		                             
 		textAppend("Clock Arrival done login\n");
 		try {

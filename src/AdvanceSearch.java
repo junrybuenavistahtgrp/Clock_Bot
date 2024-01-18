@@ -31,10 +31,11 @@ public class AdvanceSearch extends Thread{
     LocalTime localTime;
     SimpleDateFormat dateformat = new SimpleDateFormat("dd MMM yyyy");
     
+   // String hotel[]= {"Aqua Hotel"};fff
+   // String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search"};
 	
-	String hotel[]= {"Aqua Hotel","LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
-	String links[]= {"https://sky-us2.clock-software.com/77801/12036/bookings/advanced_search",
-					 "https://sky-us2.clock-software.com/77801/12510/bookings/advanced_search",
+	String hotel[]= {"LaCasa","Royal Palms Resort & Spa","Tranquilo","Victoria Park Hotel","Beach Gardens","North Beach Hotel","Tara Hotel","Tropirock","Winterset","AirBnB"};
+	String links[]= {"https://sky-us2.clock-software.com/77801/12510/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12034/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12511/bookings/advanced_search",
 					 "https://sky-us2.clock-software.com/77801/12037/bookings/advanced_search",
@@ -71,7 +72,7 @@ public class AdvanceSearch extends Thread{
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
 	}
-	  public void Login(String serial,String user,String pass) {
+	 public void Login(String serial,String user,String pass) {
 	    	
 			textAppend("Clock Arrival report starting - "+dtf.format(localTime)+"\n");
 			setBrowser();
@@ -82,23 +83,23 @@ public class AdvanceSearch extends Thread{
 				Thread.sleep(2000);			
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
 			                             	
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[3]/button")).click();	                       
-			                              
-			try {
-				Thread.sleep(5000);			
-			}catch(Exception ee) {ee.printStackTrace();}
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(user);
-			                             
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/button[2]")).click();
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[3]/button")).click();	                       
 			                             
 			try {
 				Thread.sleep(5000);			
 			}catch(Exception ee) {ee.printStackTrace();}
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(user);
 			                             
-			driver.findElement(By.xpath("/html/body/main/div/div/div/div/div/main/div/div[2]/div/div/div/div[5]/button[2]")).click();
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[2]/button[2]")).click();
+			                             
+			try {
+				Thread.sleep(5000);			
+			}catch(Exception ee) {ee.printStackTrace();}
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[2]/label/div/div[1]/div[1]/input")).sendKeys(pass);
+			                             
+			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[5]/button[2]")).click();
 			                             
 			textAppend("Clock Arrival done login\n");
 			try {
@@ -124,18 +125,20 @@ public class AdvanceSearch extends Thread{
 						try {
 							Thread.sleep(2000);			
 						}catch(Exception ee) {ee.printStackTrace();}
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();		
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[22]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();
-						                         
-						driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+						//driver.findElement(By.xpath("/html/body/div[6]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[3]/div/label/input")).click();//ref no						                
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[4]/div/label/input")).click();	//arrival                             
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[5]/div/label/input")).click();//departure
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[6]/div/label/input")).click();//stay		
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[7]/div/label/input")).click();//guess name
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[15]/div/label/input")).click();//room charge
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[25]/div/label/input")).click();//other charge
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[26]/div/label/input")).click();//total charge
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[27]/div/label/input")).click();//balance				                         
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[1]/div[29]/div/label/input")).click();//marketing channel
+						
+						driver.findElement(By.xpath("/html/body/div[4]/div[2]/div/div[2]/div/form/div[2]/input")).click();
+						
 						                       
 						try {
 							Thread.sleep(4000);			
@@ -213,6 +216,7 @@ public class AdvanceSearch extends Thread{
 		}
 		
 		textAppend("Clock advance search done getting data\n");
+		textAppend("Update date: "+dateformat.format(new Date())+"\n");
 		driver.get("http://localhost/googleapi/clock-advance_search.php");
 		
 		textAppend("Clock advance search done updating google sheet - "+dtf.format(localTime)+"\n\n");
@@ -254,7 +258,7 @@ public class AdvanceSearch extends Thread{
         String todate = dateformat.format(toD);
         
         driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).clear();
-		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).sendKeys(fromdate);
+		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[1]/input")).sendKeys(fromdate);		                           
 		                         
 		                             
 		driver.findElement(By.xpath("/html/body/span[2]/div/div/div[1]/div[3]/div[1]/form/div[2]/div[1]/div[2]/div/div[2]/input")).clear();
@@ -295,5 +299,5 @@ public class AdvanceSearch extends Thread{
 			   }catch(Exception e){}
 		}
 	}
-	public static void main(String args[]) {}
+	
 }
