@@ -96,7 +96,7 @@ public class Clock_bot extends Thread{
 				        }
 				    }); 
 				   
-		    	 JFrame frame=new JFrame("Clock BOT is Running");
+		    	 JFrame frame=new JFrame("CLOCK BOT is Running");
 		    	 frame.add(scrollableTextArea2);
 		    	 frame.add(scrollableTextArea);
 		    	 frame.add(scrollableTextArea3);
