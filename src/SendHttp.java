@@ -34,7 +34,7 @@ public class SendHttp {
 				Thread.sleep(1500);
 				Class.forName("com.mysql.jdbc.Driver");  
 				Connection con2=DriverManager.getConnection(
-				"jdbc:mysql://mindanaotravelguide.info/u798452166_ngrok","u798452166_link","Mangoi123");  	
+				"jdbc:mysql://mushkyorganic.com/u798452166_mangoi_ping","u798452166_mangoiping","Mangoiping1!");  	
 				 st2=con2.createStatement();
 				 while(true) {
 					 try {
@@ -87,10 +87,11 @@ public class SendHttp {
 			            System.out.println("-------------"+timeout);
 			            try {
 			            System.out.println(getMac());
-			            Link = "http://localhost";
+			            //Link = "http://localhost";
 			            	if(timeout>2)
 			            		 sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=2&mac="+getMac());
 			            	else sendPost(Link+"/Webtest/latency/serverhttp.php?ping="+pingResult+"&status=1&mac="+getMac());
+			        
 			            }catch(Exception ee) {ee.printStackTrace();setNgrok();updatePing();}
 		            
 	            }    
