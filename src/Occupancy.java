@@ -77,7 +77,7 @@ public class Occupancy extends Thread{
 			driver.get("https://sky-us2.clock-software.com/");
 			driver.switchTo().defaultContent();
 			try {
-				Thread.sleep(2000);			
+				Thread.sleep(6000);			
 			}catch(Exception ee) {ee.printStackTrace();}
 			
 			driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/main/div/div[2]/div/div/div/div[1]/label/div/div[1]/div/input")).sendKeys(serial);
