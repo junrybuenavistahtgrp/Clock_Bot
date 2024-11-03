@@ -43,7 +43,7 @@ public class Clock_bot extends Thread{
 		
 		
 		String  curday = "";
-		new Occupancy(area).start();
+		//new Occupancy(area).start();
 		new Arrival(area2).start();
 	
 		while(true) {
@@ -53,7 +53,7 @@ public class Clock_bot extends Thread{
 				//Thread.sleep(2000);
 			}catch(Exception ee) {ee.printStackTrace();}
 			
-				new Occupancy(area).start();
+				//new Occupancy(area).start();
 				new Arrival(area2).start();
 				 if(!curday.equalsIgnoreCase(dateFormat.format(new Date()))) { 
 					
