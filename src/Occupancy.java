@@ -220,7 +220,7 @@ public class Occupancy extends Thread{
 						System.out.println("table waiting");
 						try {
 							Thread.sleep(2000);
-						}catch(Exception ee) {ee.printStackTrace();}
+						}catch(Exception ee) {}
 					}
 			}
 			

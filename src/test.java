@@ -36,7 +36,18 @@ public class test {
 		dateformat = new SimpleDateFormat("MM/1/yyyy");
 		
 	
-		driver.get("file:///C:/xampp/htdocs/Test/test2/Aqua%20Hotel%20_%20Booking%20searches%20_%20Advanced.html");
+		driver.get("file:///Applications/XAMPP/xamppfiles/htdocs/gateway/504%20Gateway%20Time-out.html");
+		 while(true) {
+				
+				try {
+					Thread.sleep(1000);
+					System.out.println("not found\n");
+				}catch(Exception ee) {ee.printStackTrace();}
+				if(driver.findElements(By.xpath("/html/body/center/h1")).size() != 0) {											
+					System.out.println("Got it\n");
+					break;
+				}
+			}
 		
 		try {
 			Thread.sleep(5000);			
